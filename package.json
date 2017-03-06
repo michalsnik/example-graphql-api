@@ -1,0 +1,41 @@
+{
+  "name": "example-graphql-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@types/body-parser": "0.0.34",
+    "@types/express": "^4.0.35",
+    "@types/node": "^7.0.5",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "graphql": "^0.9.1",
+    "graphql-server-express": "^0.6.0",
+    "graphql-tools": "^0.10.1",
+    "inversify": "^3.1.0",
+    "reflect-metadata": "^0.1.10"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "ts-node": "^2.1.0",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.1"
+  },
+  "scripts": {
+    "start": "NODE_ENV=development nodemon --exec 'yarn run lint && ts-node src/index.ts'",
+    "debug": "NODE_ENV=development nodemon --exec 'yarn run lint && ts-node -d src/index.ts'",
+    "prod": "NODE_ENV=production ts-node src/index.ts",
+    "lint": "tslint 'src/**/*.ts' -t verbose --force",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michalsnik/example-graphql-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michalsnik/example-graphql-api/issues"
+  },
+  "homepage": "https://github.com/michalsnik/example-graphql-api#readme"
+}
