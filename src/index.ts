@@ -1,28 +1,15 @@
 import 'reflect-metadata';
 
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
-import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
-import { printSchema } from 'graphql';
+import container from './inversify.config';
+import TYPES from './types';
 
-// import TYPES from './types';
-// import container from './inversify.config';
+import { IRegistrableController } from './controllers/RegistrableController';
 
 const app: express.Application = express();
+const controllers: IRegistrableController[] = container.getAll<IRegistrableController>(TYPES.Controller);
 
-// app.use('/graphql', bodyParser.json(), graphqlExpress({
-//   schema,
-//   context: {},
-// }));
-
-// app.use('/graphiql', graphiqlExpress({
-//   endpointURL: '/graphql',
-// }));
-
-// app.use('/schema', (req, res) => {
-//   res.set('Content-Type', 'text/plain');
-//   res.send(printSchema(schema));
-// });
+controllers.forEach(controller => controller.register(app));
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
