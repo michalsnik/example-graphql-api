@@ -12,5 +12,6 @@ const controllers: IRegistrableController[] = container.getAll<IRegistrableContr
 controllers.forEach(controller => controller.register(app));
 
 app.listen(3000, () => {
+  /* tslint:disable no-console */
   console.log('Server is running on port 3000');
 });
