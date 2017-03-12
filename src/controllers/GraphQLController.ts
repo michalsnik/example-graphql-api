@@ -16,9 +16,13 @@ export class GraphQLController implements IRegistrableController {
   private graphQL: IGraphQLSchema;
 
   public register(app: express.Application) {
-    app.use('/graphql', bodyParser.json(), graphqlExpress({
-      schema: this.graphQL.schema,
-      context: {},
+    app.use('/graphql', bodyParser.json(), graphqlExpress((req, res) => {
+      return {
+        schema: this.graphQL.schema,
+        context: {
+          token: req.headers.authorization,
+        },
+      };
     }));
 
     app.use('/graphiql', graphiqlExpress({

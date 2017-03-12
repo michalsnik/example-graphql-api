@@ -15,8 +15,9 @@
     "graphql-server-express": "^0.6.0",
     "graphql-tools": "^0.10.1",
     "inversify": "^3.1.0",
-    "ramda": "^0.23.0",
-    "reflect-metadata": "^0.1.10"
+    "pg": "^6.1.4",
+    "reflect-metadata": "^0.1.10",
+    "typeorm": "^0.0.9"
   },
   "devDependencies": {
     "nodemon": "^1.11.0",

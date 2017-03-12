@@ -1,16 +1,22 @@
-import { injectable } from 'inversify';
+import { injectable, inject } from 'inversify';
+
+import TYPES from '../../types';
+import { IPropsService } from '../../services/PropsService';
+import { IGraphQLResolver } from '../index';
 
 import { props, users } from '../../data.temp';
-import { IGraphQLResolver } from '../index';
 
 @injectable()
 export class PropsResolver implements IGraphQLResolver {
   public resolver;
 
+  @inject(TYPES.PropsService)
+  private propsService: IPropsService;
+
   constructor() {
     this.resolver = {
       Query: {
-        props: this.getProps,
+        props: this.getProps.bind(this),
       },
       Prop: {
         receivers: this.getPropReceivers,
@@ -24,8 +30,8 @@ export class PropsResolver implements IGraphQLResolver {
     };
   }
 
-  private getProps() {
-    return props;
+  private getProps(_, args, context) {
+    return this.propsService.getAllProps();
   }
 
   private getPropReceivers(prop) {
